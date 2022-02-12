@@ -72,6 +72,8 @@
 				
 				if (session.getAttribute("teams") != null) {
 					studentTeams = (Vector<Vector<Student>>)session.getAttribute("teams");
+				} else {
+					studentTeams = new Vector<Vector<Student>>();
 				}
 				
 				for (Vector<Student> t : studentTeams){
