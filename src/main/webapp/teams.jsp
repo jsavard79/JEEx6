@@ -6,7 +6,7 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="java.util.Vector" %>
 <%@page import="edu.nbcc.student.Student"%>
 <%@taglib uri="/WEB-INF/tlds/studentDropdown.tld" prefix="s"%>
 <%@include file="/WEB-INF/jspf/declarativemethods.jspf"%>
@@ -41,7 +41,7 @@
 		Student student1 = null;
 		Student student2 = null;
 		
-		List<Student> team = new ArrayList<Student>();
+		Vector<Student> team = new Vector<>();
 		
 		boolean submitted = false;
 		
@@ -54,7 +54,9 @@
 				student1 = Student.getStudent(s1);
 				student2 = Student.getStudent(s2);
 				
-				List<List<Student>> studentTeams = new ArrayList();  
+				//List<List<Student>> studentTeams = new ArrayList();  
+				
+				Vector<Vector<Student>> studentTeams = new Vector<>();
 			
 				if (Student.isStudentOnTeam(team, student1)){
 					errors.add("Error adding student 1");
@@ -69,10 +71,10 @@
 				}
 				
 				if (session.getAttribute("teams") != null) {
-					studentTeams = (List<List<Student>>)session.getAttribute("teams");
+					studentTeams = (Vector<Vector<Student>>)session.getAttribute("teams");
 				}
 				
-				for (List<Student> t : studentTeams){
+				for (Vector<Student> t : studentTeams){
 					if(Student.isStudentOnTeam(t, student1)){
 						errors.add("Error adding student 1");
 					}
